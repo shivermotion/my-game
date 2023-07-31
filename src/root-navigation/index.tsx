@@ -1,13 +1,15 @@
 import React from "react";
 import { Route, Routes, Navigate } from "react-router-dom"; // Make sure to import Navigate
 import { OptionMenu } from "../scenes/OptionMenu";
-import { Collection } from "../scenes/Collection";
-import { MainMenu } from "../scenes/MainMenu";
+import { Collection } from "../scenes/Collection/Collection";
+import { MainMenu } from "../scenes/MainMenu/MainMenu";
 import { NotFound } from "../scenes/NotFound";
 import { Profile } from "../scenes/Profile";
-import { CapsuleMachineSelection } from "../scenes/CapsuleMachineSelection";
+import { CapsuleMachineSelection } from "../scenes/CapsuleMachineSelection/CapsuleMachineSelection";
 import { MiniGameSelection } from "../scenes/MiniGameSelection";
-import { Intro } from "../scenes/IntroVideo";
+import { Intro } from "../scenes/IntroVideo/IntroVideo";
+import "../globals/globals.css"
+
 
 export const RootNavigation: React.FC = () => {
   return (
