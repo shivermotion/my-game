@@ -1,12 +1,12 @@
 import React from "react";
 import { Route, Routes, Navigate } from "react-router-dom"; // Make sure to import Navigate
-import { OptionMenu } from "../scenes/OptionMenu";
+import { OptionMenu } from "../scenes/OptionsMenu/OptionMenu";
 import { Collection } from "../scenes/Collection/Collection";
 import { MainMenu } from "../scenes/MainMenu/MainMenu";
-import { NotFound } from "../scenes/NotFound";
-import { Profile } from "../scenes/Profile";
+import { NotFound } from "../scenes/NotFound/NotFound";
+import { Profile } from "../scenes/Profile/Profile";
 import { CapsuleMachineSelection } from "../scenes/CapsuleMachineSelection/CapsuleMachineSelection";
-import { MiniGameSelection } from "../scenes/MiniGameSelection";
+import { MiniGameSelection } from "../scenes/MiniGameSelection/MiniGameSelection";
 import { Intro } from "../scenes/IntroVideo/IntroVideo";
 import { PrivateLayout } from "../components/layouts/Private/Private";
 import "../globals/globals.css"
