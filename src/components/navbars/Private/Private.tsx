@@ -17,9 +17,9 @@ const PrivateNavBar: React.FC = () => {
       </div>
       {isOpen && (
         <div className="absolute top-0 left-0 z-10 flex flex-col space-y-4 p-4 h-full w-full">
-         <Link to={"collection"}> <button  ><FontAwesomeIcon icon={faCircleHalfStroke} className="text-white absolute transform rotate-45 top-[10%] right-[10%] text-6xl" /></button></Link>
-         <Link to={"profile"}><button><FontAwesomeIcon icon={faAddressCard} className="text-white absolute top-[40%] left-[40%] text-6xl" /></button></Link>
-         <Link to={"options"}><button><FontAwesomeIcon icon={faGear} className="text-white absolute transform -rotate-45 top-[65%] left-[5%] text-6xl" /></button></Link>
+         <Link to={"collection"}> <button ><FontAwesomeIcon icon={faCircleHalfStroke} className="text-white absolute transform rotate-45 top-[10%] right-[10%] text-6xl hover:animate-spin" /></button></Link>
+         <Link to={"profile"}><button><FontAwesomeIcon icon={faAddressCard} className="text-white absolute top-[40%] left-[40%] text-6xl hover:animate-bounce" /></button></Link>
+         <Link to={"options"}><button><FontAwesomeIcon icon={faGear} className="text-white absolute transform -rotate-45 top-[65%] left-[5%] text-6xl hover:animate-spin" /></button></Link>
         </div>
       )}
     </div>
