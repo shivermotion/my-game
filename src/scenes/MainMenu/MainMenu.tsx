@@ -1,9 +1,15 @@
 import React from "react";
+import {Background} from "./Background/Background";
+import {TitleText} from "./TitleText/TitleText";
 
-export const MainMenu: React.FC = () => {
+
+ export const MainMenu = () => {
   return (
-    <div>
-      <h1 className=" flex justify-center ">Main Menu</h1>
+    <div className="relative">
+      <Background />
+      <TitleText />
     </div>
   );
-}
+};
+
+export default MainMenu;
