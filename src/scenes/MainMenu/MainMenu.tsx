@@ -2,7 +2,8 @@ import React from "react";
 import { Background } from "./Background/Background";
 import { TitleText } from "./TitleText/TitleText";
 import { Button } from "../../components/ui/common/Button";
-import { WiggleButton } from "../../components/ui/common/special/WiggleButton/WiggleButton";
+import { WiggleButton } from "../../components/ui/special/WiggleButton/WiggleButton";
+
 
 export const MainMenu = () => {
   return (
