@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAddressCard,  faCircleHalfStroke, faGear } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 
+
 const PrivateNavBar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
 

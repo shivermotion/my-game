@@ -8,9 +8,9 @@
 }
 
 .diagonal-scroll {
-  background: linear-gradient(45deg, #d1d1d1 25%, transparent 25%, transparent 75%, #d1d1d1 75%, #d1d1d1),
-              linear-gradient(45deg, #d1d1d1 25%, transparent 25%, transparent 75%, #d1d1d1 75%, #d1d1d1);
+  background: linear-gradient(45deg, #ecebeb 25%, transparent 25%, transparent 75%, #ecebeb 75%, #ecebeb),
+              linear-gradient(45deg, #ecebeb 25%, transparent 25%, transparent 75%, #ecebeb 75%, #ecebeb);
   background-size: 40px 40px;
   background-position: 0 0, 20px 20px;
-  animation: diagonal-scroll 5s linear infinite;
+  animation: diagonal-scroll 9s reverse infinite;
 }
