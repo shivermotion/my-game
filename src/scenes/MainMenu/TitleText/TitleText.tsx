@@ -15,7 +15,7 @@ export const TitleText: React.FC = () => {
     'animate-ping transform transition-transform duration-500 ease-in-out hover:scale-900 hover:rotate-360 text-red-500',  // Animation 10
   ];
 
-  const title = "GACHAWORLD";
+  const title = "GACHAWORLD.";
   const [assignedAnimations, setAssignedAnimations] = useState<string[]>(new Array(title.length).fill(''));
 
   const handleClick = (index: number) => {
@@ -26,11 +26,11 @@ export const TitleText: React.FC = () => {
   };
 
   return (
-    <div className="absolute top-10 left-1/2 transform -translate-x-1/2 flex space-x-2 cursor-pointer">
+    <div className="absolute top-10 left-1/2 transform -translate-x-1/2 flex space-x-2 cursor-pointer ">
       {title.split('').map((char, index) => (
         <span
           key={index}
-          className={`text-6xl ${assignedAnimations[index]}`}
+          className={`text-6xl ${assignedAnimations[index]} xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl`} // TODO: Add more responsive breakpoints
           onClick={() => handleClick(index)}
         >
           {char}
