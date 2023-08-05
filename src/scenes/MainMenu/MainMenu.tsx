@@ -2,8 +2,8 @@ import React from "react";
 import { Background } from "./Background/Background";
 import { TitleText } from "./TitleText/TitleText";
 import { Button } from "../../components/ui/common/Button";
-import { WiggleButton } from "../../components/ui/special/WiggleButton/WiggleButton";
-import ModelScene from "./Scene/Scene";
+import { Link } from "react-router-dom";
+
 
 
 export const MainMenu = () => {
@@ -11,12 +11,9 @@ export const MainMenu = () => {
     <>
       <Background />
       <TitleText />
-     
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-        <Button />
-      </div>
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 translate-y-3/4">
-        <WiggleButton />
+        <Link to="/"> <Button text="START" /> </Link>
+        <Link to="/options"> <Button text="OPTIONS" /> </Link>
       </div>
     </>
   );
