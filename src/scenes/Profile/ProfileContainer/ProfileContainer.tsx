@@ -4,11 +4,24 @@ import avatar from "../../../assets/images/avatar.png";
 
 export const ProfileContainer = () => {
   const [description, setDescription] = useState('Default description here.');
-  const descriptionOptions = ['Option 1', 'Option 2', 'Option 3']; // Add your own options
+  const descriptionOptions = [  
+    "I'm full of surprises, just like a Gacha!",
+  "I'm like a Gachapon, ready to spread joy!",
+  "Packed with potential, I'm your personal Gachapon!",
+  "Pop goes my excitement, just like a Gacha capsule!",
+  "Every day's a new adventure, just like opening a Gacha!",
+  "I hold treasures within, just like a Gacha capsule!",
+  "Who knows what I'll do next? I'm like a Gacha surprise!",
+  "Can't stop the pop! I'm always excited, like a Gacha fan!",
+  "Like Gachapon, I spread little joys!",
+  "Twist, pop, thrill - I live life the Gacha way!"
+]; 
 
   const handleDescriptionChange = (e : any) => {
     setDescription(e.target.value);
   };
+
+  
 
   return (
     <div className="flex flex-col h-screen justify-center items-center shadow-lg p-4 rounded-3xl bg-[#FED7AA] m-8 border-2 border-orange-600">
@@ -43,13 +56,13 @@ export const ProfileContainer = () => {
             className="w-24 h-24 rounded-full border-2 border-gray-300"
           />
           <button className="w-full bg-green-500 text-white p-2 rounded mt-4 hover:bg-green-600">
-            Option 1
+           Edit Avatar
           </button>
           <button className="w-full bg-green-500 text-white p-2 rounded mt-4 hover:bg-green-600">
-            Option 2
+            Show Friend Code
           </button>
           <button className="w-full bg-green-500 text-white p-2 rounded mt-4 hover:bg-green-600">
-            Option 3
+            Share Profile
           </button>
         </div>
       </div>
