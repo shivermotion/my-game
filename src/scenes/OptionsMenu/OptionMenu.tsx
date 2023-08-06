@@ -34,9 +34,9 @@ export const OptionMenu: React.FC = () => {
   return (
     <>
       <Background/>
-      <div className="flex flex-col h-screen justify-center items-center">
-        <div className="w-full max-w-md p-6 bg-white shadow rounded-md space-y-6">
-          <h1 className="text-2xl font-bold text-center">Option Menu</h1>
+      <div className="flex flex-col h-screen justify-center items-center ">
+        <div className="w-full max-w-md p-6 bg-[#FED7AA] shadow rounded-xl  border-2 border-orange-800 space-y-6 ">
+          <h1 className="text-2xl font-bold text-center ">Option Menu</h1>
           <div className="flex items-center justify-between">
             <label htmlFor="language" className="text-sm font-bold">Language:</label>
             <select
