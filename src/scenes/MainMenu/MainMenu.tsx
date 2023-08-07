@@ -13,9 +13,9 @@ export const MainMenu = () => {
       <Background />
       <TitleText />
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 ">
-        <Link to="/capsule"> <Button text="START" /> </Link>
-        <Link to="/gohome"> <Button text="GO HOME" /> </Link>
-        <Link to="/options"> <Button text="OPTIONS"  /> </Link>
+        <Link to="/capsule"><Button text="START" /></Link>
+        <Link to="/gohome"><Button text="GO HOME" /></Link>
+        <Link to="/options"><Button text="OPTIONS"  /></Link>
       </div>
     </>
   );
