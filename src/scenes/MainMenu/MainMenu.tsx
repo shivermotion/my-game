@@ -3,7 +3,7 @@ import { Background } from "./Background/Background";
 import { TitleText } from "./TitleText/TitleText";
 import { Button } from "../../components/ui/common/Button";
 import { Link } from "react-router-dom";
-import planet from "../../assets/images/planet.png";
+
 
 
 
