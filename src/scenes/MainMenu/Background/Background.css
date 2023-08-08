@@ -1,0 +1,16 @@
+@keyframes diagonal-scroll {
+  0% {
+    background-position: 0% 0%, 20px 20px;
+  }
+  100% {
+    background-position: 40px 40px, 60px 60px;
+  }
+}
+
+.diagonal-scroll {
+  background: linear-gradient(45deg, #ecebeb 25%, transparent 25%, transparent 75%, #ecebeb 75%, #ecebeb),
+              linear-gradient(45deg, #ecebeb 25%, transparent 25%, transparent 75%, #ecebeb 75%, #ecebeb);
+  background-size: 40px 40px;
+  background-position: 0 0, 20px 20px;
+  animation: diagonal-scroll 9s reverse infinite;
+}

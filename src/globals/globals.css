@@ -1,0 +1,28 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@font-face {
+  font-family: 'MarioPaint';
+  src: url('../../public/mario-paint.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+html, body, #root {
+  height: 100vh;
+  font-family: 'MarioPaint', sans-serif;
+}
+
+.spin-image {
+  animation: spin 2s linear infinite;
+}
+
+
