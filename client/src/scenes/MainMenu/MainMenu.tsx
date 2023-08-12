@@ -21,4 +21,4 @@ export const MainMenu = () => {
   );
 };
 
-export default MainMenu;
+
