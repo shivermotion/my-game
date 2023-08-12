@@ -3,12 +3,15 @@ import logo from "../../assets/images/discord-logo-pixel.webp"
 
  export const LoginPortal = () => {
   // Replace these values with your Discord application's details
-  const clientId = process.env.REACT_APP_DISCORD_CLIENT_ID;
+  const clientId = process.env.REACT_APP_DISCORD_CLIENT_ID!;
   const redirectUri = encodeURIComponent('http://localhost:3000/auth/discord/callback');
   const scopes = encodeURIComponent('identify email');
 
   // Construct the Discord OAuth URL
   const discordLoginUrl = `https://discord.com/api/oauth2/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code&scope=${scopes}`;
+
+  console.log("rawr",discordLoginUrl);
+
 
   return (
     <div className="bg-gray-100 min-h-screen flex flex-col">
