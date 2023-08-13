@@ -10,9 +10,6 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import expressSession from 'express-session';
 
-
-
-
 // Load environment variables
 dotenv.config();
 
@@ -50,7 +47,7 @@ passport.use(new DiscordStrategy({
                 username: profile.username,
                 discriminator: profile.discriminator,
                 avatar: profile.avatar,
-                guilds: profile.guilds
+                guilds: profile.guilds,
             };
             await db.collection('users').insertOne(newUser);
             return done(null, newUser);
@@ -73,7 +70,7 @@ passport.deserializeUser(function(obj, done) {
 
 // tRPC router
 export const AppRouter = t.router({
-    // Define your routes here
+
 });
 
 // Express setup
@@ -84,6 +81,7 @@ const sessionOptions: expressSession.SessionOptions = {
   secret: process.env.SESSION_SECRET!,
   resave: false,
   saveUninitialized: false,
+  
 };
 
 // Use express-session middleware
@@ -98,6 +96,8 @@ app.use(cors({
 // Initialize Passport
 app.use(passport.initialize());
 app.use(passport.session());
+
+
 
 // Define your routes
 app.get('/auth/discord', passport.authenticate('discord'));
