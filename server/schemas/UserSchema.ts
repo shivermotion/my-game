@@ -1,6 +1,6 @@
 import {z} from 'zod';
 
-const UserSchema = z.object({
+export const UserSchema = z.object({
   // "_id": {
   //   "$oid": "64d73269454a5554e3ee8166"
   // },

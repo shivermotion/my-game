@@ -9,6 +9,7 @@ import { t } from './routers/tRPCRouter';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import expressSession from 'express-session';
+import { UserRouter } from './routers/UserRouter';
 
 // Load environment variables
 dotenv.config();
@@ -27,7 +28,7 @@ async function connectToDb() {
 
 connectToDb();
 
-const db = client.db('gachaworld');
+export const db = client.db('gachaworld');
 
 
 // Passport setup
@@ -70,6 +71,7 @@ passport.deserializeUser(function(obj, done) {
 
 // tRPC router
 export const AppRouter = t.router({
+  user: UserRouter,
 
 });
 

@@ -1,6 +1,9 @@
-import React,{useState} from 'react';
+import React,{useEffect, useState} from 'react';
 import { ProfileCard } from '../ProfileCard/ProfileCard';
 import avatar from "../../../assets/images/avatar.png";
+ 
+
+
 
 export const ProfileContainer = () => {
   const [description, setDescription] = useState('Default description here.');
@@ -20,6 +23,7 @@ export const ProfileContainer = () => {
   const handleDescriptionChange = (e : any) => {
     setDescription(e.target.value);
   };
+
 
   
 
