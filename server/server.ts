@@ -10,6 +10,11 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import expressSession from 'express-session';
 import { UserRouter } from './routers/UserRouter';
+import jwt from 'jsonwebtoken'; // Import JWT library
+import {User} from './schemas/UserSchema';
+import { Gachapon, GachaponSchema } from './schemas/GachaponSchema';
+import { authMiddleware } from './middleware/authMiddleware';
+
 
 // Load environment variables
 dotenv.config();
@@ -39,7 +44,7 @@ passport.use(new DiscordStrategy({
     scope: ['identify', 'email']
   }, async (accessToken, refreshToken, profile, done) => {
     try {
-        const user = await db.collection('users').findOne({ discordId: profile.id });
+      const user = await db.collection<User>('users').findOne({ discordId: profile.id });
         if (user) {
             return done(null, user);
         } else {
@@ -49,6 +54,7 @@ passport.use(new DiscordStrategy({
                 discriminator: profile.discriminator,
                 avatar: profile.avatar,
                 guilds: profile.guilds,
+                gachaponCollection: []
             };
             await db.collection('users').insertOne(newUser);
             return done(null, newUser);
@@ -91,7 +97,7 @@ app.use(expressSession(sessionOptions));
 
 // Enable CORS
 app.use(cors({
-  origin: 'http://localhost:3001', // Replace with your frontend's URL
+  origin: 'http://localhost:8000', // Replace with your frontend's URL
   credentials: true,
 }));
 
@@ -104,9 +110,33 @@ app.use(passport.session());
 // Define your routes
 app.get('/auth/discord', passport.authenticate('discord'));
 app.get('/auth/discord/callback', passport.authenticate('discord', { failureRedirect: '/login' }), function(req, res) {
-    // Successful authentication, redirect home.
-    res.redirect('http://localhost:3001/intro');
+  // Cast req.user to the User type
+  const user = req.user as User;
+
+  // Successful authentication, create a JWT with user ID
+  const token = jwt.sign({ userId: user.discordId }, process.env.JWT_SECRET!, { expiresIn: '1d' });
+
+  // Send token to client, you can also set it in a cookie or other client-side storage
+  res.redirect(`http://localhost:8000/intro?token=${token}`);
 });
+
+// Middleware to authenticate user on subsequent requests
+app.use((req, res, next) => {
+  const token = req.headers.authorization?.split(' ')[1];
+  if (token) {
+    try {
+      const decoded = jwt.verify(token, process.env.JWT_SECRET!) as { userId: string }; // Replace with your secret key
+      req.user = { discordId: decoded.userId } as User;
+      next();
+    } catch {
+      res.status(401).send('Unauthorized');
+    }
+  } else {
+    next();
+  }
+});
+
+app.use(authMiddleware);
 
 // tRPC router
 app.use('/api/trpc', trpcExpress.createExpressMiddleware({ router: AppRouter, createContext }));

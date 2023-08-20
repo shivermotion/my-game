@@ -6,6 +6,17 @@ export const Intro = () => {
   const navigate = useNavigate();
   const [opacity, setOpacity] = useState(0);
 
+  // Check for token in URL params
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get('token');
+    if (token) {
+      localStorage.setItem('authToken', token);
+      // Redirect to remove token from URL, if desired
+      window.location.href = '/intro';
+    }
+  }, []);
+
   // Fade in effect
   useEffect(() => {
     const fadeIn = setTimeout(() => {

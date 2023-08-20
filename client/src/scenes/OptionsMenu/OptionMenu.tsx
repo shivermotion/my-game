@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button } from "../../components/ui/common/Button";
 import { Link } from "react-router-dom";
 import { Background } from "../MainMenu/Background/Background";
+import LogoutModal from "../../components/ui/modals/LogoutModal";
 import "../MainMenu/Background/Background.css"
 
 export const OptionMenu: React.FC = () => {
@@ -10,6 +11,7 @@ export const OptionMenu: React.FC = () => {
   const [sfxVolume, setSfxVolume] = useState(50);
   const [colorBlindMode, setColorBlindMode] = useState(false);
   const [graphicsQuality, setGraphicsQuality] = useState(false);
+  const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
 
   const handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setLanguage(e.target.value);
@@ -30,6 +32,19 @@ export const OptionMenu: React.FC = () => {
   const handleGraphicsQualityToggle = () => {
     setGraphicsQuality(!graphicsQuality);
   }
+
+
+  const handleLogout = () => {
+    // Remove the token and redirect to login
+    console.log('Logging out...'); // This should appear in the console when you click logout
+    localStorage.removeItem('authToken');
+    if (!localStorage.getItem('token')) {
+      console.log('Token has been removed');
+    } else {
+      console.log('Token is still present');
+    }
+    window.location.href = '/';
+  };
 
   return (
     <>
@@ -96,10 +111,15 @@ export const OptionMenu: React.FC = () => {
             </button>
           </div>
           <Link to="/main-menu" className="mt-4">
-            <Button text="To Start Screen" />
+            <Button text="TO START SCREEN"  />
           </Link>
+            <Button onClick={()=>{setIsLogoutModalOpen(true)}} text="QUIT" />
         </div>
       </div>
-    </>
+       <LogoutModal
+        isOpen={isLogoutModalOpen}
+        onConfirm={handleLogout}
+        onCancel={() => setIsLogoutModalOpen(false)} />
+        </>
   );
 }
