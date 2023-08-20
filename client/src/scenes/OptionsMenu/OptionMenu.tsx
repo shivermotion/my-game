@@ -111,9 +111,9 @@ export const OptionMenu: React.FC = () => {
             </button>
           </div>
           <Link to="/main-menu" className="mt-4">
-            <Button text="To Start Screen"  />
+            <Button text="TO START SCREEN"  />
           </Link>
-            <Button onClick={()=>{setIsLogoutModalOpen(true)}} text="Quit" />
+            <Button onClick={()=>{setIsLogoutModalOpen(true)}} text="QUIT" />
         </div>
       </div>
        <LogoutModal

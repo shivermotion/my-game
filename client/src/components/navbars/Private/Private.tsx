@@ -11,7 +11,7 @@ const PrivateNavBar: React.FC = () => {
 
   return (
     <div className={`fixed top-0 left-0 bg-black w-24 h-24 rounded-br-full transition-all duration-1000 ease-in-out z-10 ${isOpen ? 'w-72 h-72' : ''}`}>
-      <div className="absolute top-0 left-0 w-12 h-12 rounded-full cursor-pointer  z-20 transition-all duration-1000 ease-in-out"
+      <div className="absolute top-0 left-0 w-12 h-12 rounded-full cursor-pointer  z-20 transition-all duration-1000 ease-in-out" 
         onClick={() => setIsOpen(!isOpen)}>
         <ModernAvatar avatar={avatar} />
       </div>
