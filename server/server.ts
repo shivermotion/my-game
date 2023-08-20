@@ -13,7 +13,7 @@ import { UserRouter } from './routers/UserRouter';
 import jwt from 'jsonwebtoken'; // Import JWT library
 import {User} from './schemas/UserSchema';
 import { Gachapon, GachaponSchema } from './schemas/GachaponSchema';
-
+import { authMiddleware } from './middleware/authMiddleware';
 
 
 // Load environment variables
@@ -136,6 +136,7 @@ app.use((req, res, next) => {
   }
 });
 
+app.use(authMiddleware);
 
 // tRPC router
 app.use('/api/trpc', trpcExpress.createExpressMiddleware({ router: AppRouter, createContext }));
