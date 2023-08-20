@@ -1,5 +1,5 @@
 import React from 'react';
-import { CollectionsCard } from '../../components/ui/CollectionsCard/CollectionsCard';
+import { CollectionsCard } from '../../components/ui/cards/CollectionsCard/CollectionsCard';
 import { Background } from '../MainMenu/Background/Background';
 
 
