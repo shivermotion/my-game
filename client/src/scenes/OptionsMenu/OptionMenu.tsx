@@ -45,6 +45,7 @@ export const OptionMenu: React.FC = () => {
     }
     window.location.href = '/';
   };
+  
 
   return (
     <>

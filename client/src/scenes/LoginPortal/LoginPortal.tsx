@@ -21,7 +21,7 @@ import { Button } from '../../components/ui/common/Button';
       <div className="container mx-auto p-8">
         <div className="flex justify-between items-center">
           <h1 className="text-4xl font-bold">GACHAWORLD</h1>
-          <a href="/merch-shop" ><Button text='MERCH SHOP'/></a>
+          <a href="/merch-shop" ><Button text='SHOP'/></a>
         </div>
 
         <div className="grid grid-cols-3 gap-8 mt-8">
