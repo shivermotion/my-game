@@ -1,6 +1,11 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
+<<<<<<< HEAD
+=======
+client/node_modules/
+server/node_modules/
+>>>>>>> 4e11c434f7a7e2bcaf8b3497104b3046ff79928f
 node_modules/
 .cache/
 /.pnp
