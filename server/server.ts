@@ -10,11 +10,14 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import expressSession from 'express-session';
 import { UserRouter } from './routers/UserRouter';
+<<<<<<< HEAD
+=======
 import jwt from 'jsonwebtoken'; // Import JWT library
 import {User} from './schemas/UserSchema';
 import { Gachapon, GachaponSchema } from './schemas/GachaponSchema';
 import { authMiddleware } from './middleware/authMiddleware';
 
+>>>>>>> 4e11c434f7a7e2bcaf8b3497104b3046ff79928f
 
 // Load environment variables
 dotenv.config();
