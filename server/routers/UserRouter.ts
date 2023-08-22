@@ -9,22 +9,16 @@ export const UserRouter = t.router({
     if (!discordId) {
       throw new Error("Discord ID not provided");
     }
-<<<<<<< HEAD
-=======
 
     // Authorization check: Ensure the user is accessing their own information
     if (ctx.user?.discordId !== discordId) {
       throw new Error("Unauthorized");
     }
 
->>>>>>> 4e11c434f7a7e2bcaf8b3497104b3046ff79928f
     const user = await db.collection('users').findOne({ discordId });
     if (!user) {
       throw new Error("User not found");
     }
-<<<<<<< HEAD
-    return user;
-=======
 
     // Validate the user object using the UserSchema
     const validationResult = UserSchema.safeParse(user);
@@ -34,6 +28,5 @@ export const UserRouter = t.router({
     }
 
     return validationResult.data; // Return the validated user object
->>>>>>> 4e11c434f7a7e2bcaf8b3497104b3046ff79928f
   }),
 });
