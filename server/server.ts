@@ -54,7 +54,9 @@ passport.use(new DiscordStrategy({
                 discriminator: profile.discriminator,
                 avatar: profile.avatar,
                 guilds: profile.guilds,
+                money: 1000,
                 gachaponCollection: []
+
             };
             await db.collection('users').insertOne(newUser);
             return done(null, newUser);
