@@ -112,13 +112,14 @@ app.use(passport.session());
 // Define your routes
 app.get('/auth/discord', passport.authenticate('discord'));
 app.get('/auth/discord/callback', passport.authenticate('discord', { failureRedirect: '/login' }), function(req, res) {
-  // Cast req.user to the User type
   const user = req.user as User;
 
-  // Successful authentication, create a JWT with user ID
+  console.log("Authenticated User:", user);
+
   const token = jwt.sign({ userId: user.discordId }, process.env.JWT_SECRET!, { expiresIn: '1d' });
 
-  // Send token to client, you can also set it in a cookie or other client-side storage
+  console.log("Generated JWT:", token);
+
   res.redirect(`http://localhost:8000/intro?token=${token}`);
 });
 
