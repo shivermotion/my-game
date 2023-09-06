@@ -17,7 +17,7 @@ export const MainMenu = () => {
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 ">
       <ModelViewer src={earth} alt="A 3D model of an astronaut"  />
         <Link to="/capsule"><Button text="START" /></Link>
-        <Link to="/gohome"><Button text="GO HOME" /></Link>
+        <Link to="/minigames"><Button text="MINI GAMES" /></Link>
         <Link to="/options"><Button text="OPTIONS"  /></Link>
       </div>
     </>

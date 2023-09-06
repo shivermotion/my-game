@@ -29,6 +29,10 @@ const QTEGame = () => {
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+        // If the game is over, don't register any more keypresses
+  if (gameOver) {
+    return;
+  }
       const keyPressed = e.key.toUpperCase();
 
       if (validInputs.includes(keyPressed)) {
@@ -73,23 +77,39 @@ const QTEGame = () => {
       }, 100);
     } else if (countdown <= 0) {
       setGameOver(true);
+          // Play the wrong input sound
+          const gameOverAudio = new Audio(fail);
+          gameOverAudio.play();
     }
 
     return () => clearTimeout(timer);
   }, [countdown, gameOver]);
-
   return (
-    <div className="container mx-auto text-center">
+    <div className="flex flex-col items-center justify-center h-screen">
       <h1 className="text-4xl mb-4">Quick Timer Event Game</h1>
-      <button onClick={generateInput}>Start Game</button>
-      <div>
-        <h2 className="text-2xl">Score: {score}</h2>
-        <h2 className="text-2xl">Time Left: {countdown.toFixed(1)}</h2>
-        <h2 className="text-2xl">Input: {targetInput}</h2>
+      <button className="mb-4" onClick={generateInput}>Start Game</button>
+      <div className="flex space-x-4 mb-4">
+        <div className="border p-4">
+          <h2 className="text-2xl">Current Score</h2>
+          <p>{score}</p>
+        </div>
+        <div className="border p-4">
+          <h2 className="text-2xl">Hi Score</h2>
+          <p>/* Your hi score logic here */</p>
+        </div>
+        <div className="border p-4">
+          <h2 className="text-2xl">Last Score</h2>
+          <p>/* Your last score logic here */</p>
+        </div>
       </div>
-      {gameOver && <h2 className="text-2xl text-red-500">Game Over</h2>}
+      <h2 className="text-2xl mb-4">Time Left: {countdown.toFixed(1)}</h2>
+      <div className={targetInput === 'W' ? "flex flex-col justify-center items-center  rounded-full w-48 h-48 bg-blue-500" : targetInput === 'S' ? "flex flex-col justify-center items-center  rounded-full w-48 h-48 bg-red-500" : targetInput === 'A' ? "flex flex-col justify-center items-center  rounded-full w-48 h-48 bg-green-500": "flex flex-col justify-center items-center  rounded-full w-48 h-48 bg-yellow-500"}>
+        <span className="text-white text-9xl animate-pulse animate-duration-200 p-4 flex-col">{targetInput}</span>
+      </div>
+      {gameOver && <h2 className="text-2xl text-red-500 mt-4">Game Over</h2>}
     </div>
   );
-};
+}
+  
 
 export default QTEGame;
