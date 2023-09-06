@@ -7701,6 +7701,11 @@ postcss@^8.3.5, postcss@^8.4.21, postcss@^8.4.23, postcss@^8.4.4:
     picocolors "^1.0.0"
     source-map-js "^1.0.2"
 
+prefixfree@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/prefixfree/-/prefixfree-1.0.0.tgz#82b0edbbac107f2a3e2dc569d6c3df4035cd7910"
+  integrity sha512-TKFEyl/lFSDLF4dHLjwUqtsJLi9Qo4uM9aaPGW4n2J+m0W88PqHHvlkLpLm1Smam8p+ohu1OjbLqSWEMYpfiZg==
+
 prelude-ls@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/prelude-ls/-/prelude-ls-1.2.1.tgz#debc6489d7a6e6b0e7611888cec880337d316396"
