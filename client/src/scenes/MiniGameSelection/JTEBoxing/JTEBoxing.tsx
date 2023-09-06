@@ -1,83 +1,95 @@
 import React, { useState, useEffect } from 'react';
-import Modal from 'react-modal';
+import beep from "../../../assets/sounds/qte-beep-sequence.mp3"
+import success from '../../../assets/sounds/qte-success.mp3'
+import fail from '../../../assets/sounds/qte-fail.mp3'
 
-
-export const QTEGame: React.FC = () => {
-  const qteSequence = ['a', 's', 'd', 'w'];
-  const qteDuration = 3000; // 3 seconds
+const QTEGame = () => {
   const [score, setScore] = useState(0);
+  const [countdown, setCountdown] = useState(3);
+  const [currentInput, setCurrentInput] = useState('');
+  const [targetInput, setTargetInput] = useState('');
   const [gameOver, setGameOver] = useState(false);
-  const [qteIndex, setQTEIndex] = useState(0);
-  const [userInput, setUserInput] = useState('');
+  const [successCount, setSuccessCount] = useState(0);
 
-   // Set the App element for react-modal
-   useEffect(() => {
-    Modal.setAppElement('#root'); // Assuming your root element has the id 'root'
+  const validInputs = ['A', 'S', 'W', 'D'];
+
+  const generateInput = () => {
+    const randomIndex = Math.floor(Math.random() * validInputs.length);
+    setTargetInput(validInputs[randomIndex]);
+  
+    // Play the sound
+    const audio = new Audio(beep);
+    audio.play();
+  };
+  
+
+  useEffect(() => {
+    generateInput();
   }, []);
 
   useEffect(() => {
-    if (!gameOver) {
-      const timer = setTimeout(() => {
-        setGameOver(true);
-      }, qteDuration);
-      return () => clearTimeout(timer);
-    }
-  }, [gameOver]);
+    const handleKeyDown = (e: KeyboardEvent) => {
+      const keyPressed = e.key.toUpperCase();
 
-  const handleKeyPress = (event: React.KeyboardEvent) => {
-    if (!gameOver) {
-      const keyPressed = event.key;
-      setUserInput(keyPressed); // Track user's input
-      if (keyPressed === qteSequence[qteIndex]) {
-        setScore(score + 100);
-        setQTEIndex(qteIndex + 1);
-        if (qteIndex === qteSequence.length - 1) {
+      if (validInputs.includes(keyPressed)) {
+        setCurrentInput(keyPressed);
+
+        if (keyPressed === targetInput) {
+          const bonus = 100 * countdown;
+          setScore(prevScore => prevScore + 100 + bonus);
+          setSuccessCount(prevSuccessCount => prevSuccessCount + 1);
+          // Play the correct input sound
+          const correctAudio = new Audio(success);
+          correctAudio.play();
+
+          if (successCount !== 0 && successCount % 30 === 0) {
+            setCountdown(prevCountdown => prevCountdown - 0.3);
+          }
+
+          generateInput();
+          setCountdown(3);
+        } else {
           setGameOver(true);
+          // Play the wrong input sound
+          const wrongAudio = new Audio(fail);
+          wrongAudio.play();
         }
-      } else {
-        setGameOver(true);
       }
-    }
-  };
+    };
 
-  const startGame = () => {
-    setScore(0);
-    setGameOver(false);
-    setQTEIndex(0);
-    setUserInput('');
-  };
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [targetInput, countdown, successCount]);
+
+  useEffect(() => {
+    let timer: string | number | NodeJS.Timeout | undefined;
+
+    if (countdown > 0 && !gameOver) {
+      timer = setTimeout(() => {
+        setCountdown(countdown - 0.1);
+      }, 100);
+    } else if (countdown <= 0) {
+      setGameOver(true);
+    }
+
+    return () => clearTimeout(timer);
+  }, [countdown, gameOver]);
 
   return (
-    <div className="container">
-      <h1 className="text-4xl font-bold">QTE Mini-Game</h1>
-      <div
-        className="qte-box"
-        onKeyDown={handleKeyPress}
-        tabIndex={0} // Ensure the container can receive focus
-      >
-        <p className="text-2xl font-bold">Press: {qteSequence[qteIndex]}</p>
-        <p className="text-2xl font-bold">You Pressed: {userInput}</p>
-        {qteSequence.map((key, index) => (
-          <span key={index} className="text-5xl font-bold">
-            {index === qteIndex ? <span className="text-contrast">{key}</span> : key}
-          </span>
-        ))}
-      </div>
+    <div className="container mx-auto text-center">
+      <h1 className="text-4xl mb-4">Quick Timer Event Game</h1>
+      <button onClick={generateInput}>Start Game</button>
       <div>
-        <p className="score">Score: {score}</p>
-        {gameOver && (
-          <p className="game-over">Game Over! Your Score: {score}</p>
-        )}
+        <h2 className="text-2xl">Score: {score}</h2>
+        <h2 className="text-2xl">Time Left: {countdown.toFixed(1)}</h2>
+        <h2 className="text-2xl">Input: {targetInput}</h2>
       </div>
-      <button
-        className="qte-button"
-        onClick={startGame}
-        disabled={!gameOver && qteIndex < qteSequence.length}
-      >
-        Start Game
-      </button>
+      {gameOver && <h2 className="text-2xl text-red-500">Game Over</h2>}
     </div>
   );
 };
 
-
+export default QTEGame;

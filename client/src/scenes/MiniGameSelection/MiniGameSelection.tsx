@@ -1,21 +1,13 @@
 import React, { useState } from "react";
-import Game1 from "../MiniGameSelection/Game1/Game1"; // Import your game components
-import GameModal from "../../components/ui/modals/GameModal"; // Import your modal component
 import SpinningRectangle from "../../components/ui/special/SpinningRectangle/SpinningRectangle";
-import {QTEGame} from "./JTEBoxing/JTEBoxing";
+import Game from "./JTEBoxing/JTEBoxing"; // Import the component directly
 
 export const MiniGameSelection: React.FC = () => {
-  const [modalOpen, setModalOpen] = useState(false);
-  const [selectedGame, setSelectedGame] = useState(null);
+  const [selectedGame, setSelectedGame] = useState<React.ReactNode | null>(null);
 
-  const openModal = (game:any) => {
-    setSelectedGame(game);
-    setModalOpen(true);
-  };
-
-  const closeModal = () => {
+  // Function to go back to game selection
+  const goBackToSelection = () => {
     setSelectedGame(null);
-    setModalOpen(false);
   };
 
   return (
@@ -23,14 +15,22 @@ export const MiniGameSelection: React.FC = () => {
       <h1 className="justify-center flex shadow-lg p-4 rounded-3xl bg-[#FED7AA] m-8 border-2 border-orange-600">
         MiniGameSelection
       </h1>
-      <div className="flex flex-col items-center justify-center h-screen">
-        <SpinningRectangle onClick={() => openModal(<QTEGame />)} />
-        {/* Add other SpinningRectangle components for other games */}
-      </div>
-
-      <GameModal isOpen={modalOpen} onClose={closeModal}>
-        {selectedGame}
-      </GameModal>
+      {selectedGame === null ? (
+        <div className="flex flex-col items-center justify-center h-screen">
+          <SpinningRectangle onClick={() => setSelectedGame(<Game />)} />
+        </div>
+      ) : (
+        <div>
+          {/* Add a back button */}
+          <button
+            className="bg-blue-500 text-white px-4 py-2 rounded-md mt-4"
+            onClick={goBackToSelection}
+          >
+            Back to Game Selection
+          </button>
+          {selectedGame}
+        </div>
+      )}
     </div>
   );
 };
