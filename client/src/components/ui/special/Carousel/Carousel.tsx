@@ -4,8 +4,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { WiggleButton } from '../WiggleButton/WiggleButton';
 import { LaunchBigConfetti } from '../Confetti/Confetti';
-import { CapsuleMachineBlue } from '../CapsuleMachineBlue/CapsuleMachineBlue';
 import './Carousel.css';
+import ModelViewer from '../ModelViewer/ModelViewer';
 
 
 
@@ -80,13 +80,13 @@ export const Carousel: React.FC<CarouselProps> = ({ machines }) => {
   return (
     <div id='Carousel'>
     <div className='w-full h-full flex' onClick={handleContainerClick}  >
+      
       <div className='w-3/4 h-full m-4 animate-jump  '>
       <Slider {...settings}>
           {machines.map((machine, index) => (
             <div key={index} className="h-[80vh] w-full flex items-center justify-center overflow-hidden rounded-3xl hover:cursor-pointer">
               {/* <img className="w-full h-[80%] object-contain" src={`${machine.imageFile}`} alt={`carousel ${index + 1}`} /> */}
-              <CapsuleMachineBlue  />
-
+              <ModelViewer src={machine.imageFile} alt={'test'} />
               <div className="w-full h-[20%] flex items-center justify-center ">
               <WiggleButton onClick={(e) => handleButtonClick(e)} text={"SELECT"} />
               </div>
