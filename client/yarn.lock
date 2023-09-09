@@ -3327,6 +3327,11 @@ caniuse-lite@^1.0.0, caniuse-lite@^1.0.30001464, caniuse-lite@^1.0.30001503:
   resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001517.tgz#90fabae294215c3495807eb24fc809e11dc2f0a8"
   integrity sha512-Vdhm5S11DaFVLlyiKu4hiUTkpZu+y1KA/rZZqVQfOD5YdDT/eQKlkt7NaE0WGOFgX32diqt9MiP9CAiFeRklaA==
 
+canvas-confetti@^1.6.0:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/canvas-confetti/-/canvas-confetti-1.6.0.tgz#193f71aa8f38fc850a5ba94f59091a7afdb43ead"
+  integrity sha512-ej+w/m8Jzpv9Z7W7uJZer14Ke8P2ogsjg4ZMGIuq4iqUOqY2Jq8BNW42iGmNfRwREaaEfFIczLuZZiEVSYNHAA==
+
 case-sensitive-paths-webpack-plugin@^2.4.0:
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/case-sensitive-paths-webpack-plugin/-/case-sensitive-paths-webpack-plugin-2.4.0.tgz#db64066c6422eed2e08cc14b986ca43796dbc6d4"
@@ -7700,11 +7705,6 @@ postcss@^8.3.5, postcss@^8.4.21, postcss@^8.4.23, postcss@^8.4.4:
     nanoid "^3.3.6"
     picocolors "^1.0.0"
     source-map-js "^1.0.2"
-
-prefixfree@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/prefixfree/-/prefixfree-1.0.0.tgz#82b0edbbac107f2a3e2dc569d6c3df4035cd7910"
-  integrity sha512-TKFEyl/lFSDLF4dHLjwUqtsJLi9Qo4uM9aaPGW4n2J+m0W88PqHHvlkLpLm1Smam8p+ohu1OjbLqSWEMYpfiZg==
 
 prelude-ls@^1.2.1:
   version "1.2.1"

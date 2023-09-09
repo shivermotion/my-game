@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import SpinningRectangle from "../../components/ui/special/SpinningRectangle/SpinningRectangle";
 import Game from "./JTEBoxing/JTEBoxing"; // Import the component directly
-import ModelViewer from "../../components/ui/special/ModelViewer/ModelViewer";
+
 
 
 export const MiniGameSelection: React.FC = () => {

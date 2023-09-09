@@ -1,54 +1,62 @@
-.container {
-  perspective: 1600px; /* Double the perspective */
+#SpinningRectangle {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+
 }
 
-.cuboid {
+#SpinningRectangle .container {
+  perspective: 1600px;
+}
+
+#SpinningRectangle .cuboid {
   position: relative;
-  width: 200px; /* Double the width of the cuboid */
+  width: 200px;
   transform-style: preserve-3d;
-  /* Remove any rotation styles if they exist */
 }
 
-.face {
+#SpinningRectangle .face {
   position: absolute;
-  width: 350px; /* Double the width */
-  height: 600px; /* Double the height */
-  border: 2px solid black; /* Double the border if you want */
+  width: 350px;
+  height: 600px;
+  border: 2px solid black;
   background-image: url('../../../../assets/images/parody-game-1.png');
-  background-size: 100% 100%; /* Stretch to fill the entire face */
-  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 }
 
-.frontSide {
-  transform: translateZ(50px); /* Double the Z translation */
+#SpinningRectangle .frontSide {
+  transform: translateZ(50px);
 }
 
-.backSide {
-  transform: rotateY(180deg) translateZ(50px); /* Double the Z translation */
+#SpinningRectangle .backSide {
+  transform: rotateY(180deg) translateZ(50px);
 }
 
-.topSide {
-  transform: rotateX(90deg) translateZ(300px); /* Double the Z translation */
+#SpinningRectangle .topSide {
+  transform: rotateX(90deg)  rotateZ(90deg);
+  width: 100px;
+  height: 200px;
+  
+ 
+}
+
+#SpinningRectangle .bottomSide {
+  transform: rotateX(-90deg) translateZ(200px);
   width: 100px;
 }
 
-.bottomSide {
-  transform: rotateX(-90deg) translateZ(200px); /* Double the Z translation */
+#SpinningRectangle .rightSide {
+  transform: rotateY(90deg) translateZ(300px);
   width: 100px;
-}
-
-.rightSide {
-  transform: rotateY(90deg) translateZ(300px); /* Double the Z translation */
-  width: 100px;
-  background-color:#343231 ;
+  background-color: #343231;
   background-image: none;
-
 }
 
-.leftSide {
-  transform: rotateY(-90deg) translateZ(50px); /* Double the Z translation */
+#SpinningRectangle .leftSide {
+  transform: rotateY(-90deg) translateZ(50px);
   width: 100px;
-  background-color:#343231 ;
+  background-color: #343231;
   background-image: none;
-
 }

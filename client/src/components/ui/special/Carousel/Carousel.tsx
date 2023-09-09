@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 import { WiggleButton } from '../WiggleButton/WiggleButton';
+import { LaunchBigConfetti } from '../Confetti/Confetti';
+import { CapsuleMachineBlue } from '../CapsuleMachineBlue/CapsuleMachineBlue';
 import './Carousel.css';
+
 
 
 interface CapsuleMachine {
@@ -50,14 +53,40 @@ export const Carousel: React.FC<CarouselProps> = ({ machines }) => {
     beforeChange: (current: number, next: number) => setCurrentIndex(next),
   };
 
-  // onClick={handleContainerClick}
+  useEffect(() => {
+    let timer: string | number | NodeJS.Timeout | undefined;
+    if (showAnimation) {
+      setTimeout(() => {
+          LaunchBigConfetti();
+      }
+      , 1500);
+      timer = setTimeout(() => {
+        setShowAnimation(false);
+      }, 3000);
+    }
+    // } else if (showAnimation && gachapon === "ultra rare") {
+ //   LaunchStarConfetti();
+ // } else if (showAnimation && gachapon === "common" || "uncommon" || "rare") {
+ //   LaunchBasicConfetti();
+    return () => {
+      // Cleanup timer if the component is unmounted
+      clearTimeout(timer);
+     
+    };
+  }, [showAnimation]);
+  
+
+
   return (
+    <div id='Carousel'>
     <div className='w-full h-full flex' onClick={handleContainerClick}  >
       <div className='w-3/4 h-full m-4 animate-jump  '>
       <Slider {...settings}>
           {machines.map((machine, index) => (
             <div key={index} className="h-[80vh] w-full flex items-center justify-center overflow-hidden rounded-3xl hover:cursor-pointer">
-              <img className="w-full h-[80%] object-contain" src={`${machine.imageFile}`} alt={`carousel ${index + 1}`} />
+              {/* <img className="w-full h-[80%] object-contain" src={`${machine.imageFile}`} alt={`carousel ${index + 1}`} /> */}
+              <CapsuleMachineBlue  />
+
               <div className="w-full h-[20%] flex items-center justify-center ">
               <WiggleButton onClick={(e) => handleButtonClick(e)} text={"SELECT"} />
               </div>
@@ -69,16 +98,6 @@ export const Carousel: React.FC<CarouselProps> = ({ machines }) => {
            <div className="animation-container">
            <div className="ball left"></div>
            <div className="ball right"></div>
-           <div className="confetti confetti1"></div>
-           <div className="confetti confetti2"></div>
-           <div className="confetti confetti3"></div>
-            <div className="confetti confetti4"></div>
-            <div className="confetti confetti5"></div>
-            <div className="confetti confetti6"></div>
-            <div className="confetti confetti7"></div>
-            <div className="confetti confetti8"></div>
-            <div className="confetti confetti9"></div>
-            <div className="confetti confetti10"></div>
          </div>
         )}
       </div>
@@ -93,6 +112,7 @@ export const Carousel: React.FC<CarouselProps> = ({ machines }) => {
           <p className='text-gray-700 p-4 font-bold'>COST: ${machines[currentIndex].cost}</p>
         </div>
       </div>
+    </div>
     </div>
   );
 };

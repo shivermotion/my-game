@@ -3,6 +3,7 @@ import { Carousel } from "../../components/ui/special/Carousel/Carousel";
 import { Background } from "../MainMenu/Background/Background";
 import AnimatedHand from "../../components/ui/special/AnimatedHand/AnimatedHand";
 
+
 export const CapsuleMachineSelection: React.FC = () => {
   const [showHand, setShowHand] = useState(true);
 
