@@ -84,22 +84,23 @@ export const Carousel: React.FC<CarouselProps> = ({ machines }) => {
       <div className='w-3/4 h-full m-4 animate-jump  '>
       <Slider {...settings}>
           {machines.map((machine, index) => (
-            <div key={index} className="h-[80vh] w-full flex items-center justify-center overflow-hidden rounded-3xl hover:cursor-pointer">
+            <div key={index} className="h-[70vh] w-full flex items-center justify-center overflow-hidden rounded-3xl ">
               {/* <img className="w-full h-[80%] object-contain" src={`${machine.imageFile}`} alt={`carousel ${index + 1}`} /> */}
               <ModelViewer src={machine.imageFile} alt={'test'} />
-              <div className="w-full h-[20%] flex items-center justify-center ">
-              <WiggleButton onClick={(e) => handleButtonClick(e)} text={"SELECT"} />
-              </div>
-            
             </div>
           ))}
         </Slider>
+              <div className="w-full h-[20%] flex items-center justify-center  hover:cursor-pointer ">
+              <WiggleButton onClick={(e) => handleButtonClick(e)} text={"SELECT"} />
+              </div>
         {showAnimation && (
            <div className="animation-container">
            <div className="ball left"></div>
            <div className="ball right"></div>
          </div>
         )}
+        
+        
       </div>
       <div className='w-1/4 h-grow border-2 border-gray-500 rounded-3xl m-4 bg-opacity-[.5] bg-gray-200 p-4 flex flex-col justify-between animate-fade-left  '>
       <div>

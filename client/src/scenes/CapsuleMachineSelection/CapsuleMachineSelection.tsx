@@ -4,6 +4,7 @@ import { Background } from "../MainMenu/Background/Background";
 import AnimatedHand from "../../components/ui/special/AnimatedHand/AnimatedHand";
 import capsuleMachineBlue from "../../assets/models/CapsuleMachine.glb"
 import capsuleMachineRed from "../../assets/models/CapsuleMachineRed.glb"
+import japanMachine from "../../assets/models/JapaneseCapsuleMachine.glb"
 
 export const CapsuleMachineSelection: React.FC = () => {
   const [showHand, setShowHand] = useState(true);
@@ -43,7 +44,7 @@ export const CapsuleMachineSelection: React.FC = () => {
   {
     id: 3,
     name: "Cybernetic City",
-    imageFile: "machine3.png",
+    imageFile: japanMachine,
     rarity: "Common",
     cost: 100,
     description: "Step into a neon-lit cyberpunk future. Extract characters from a world of technology, hackers, and neon lights.",
