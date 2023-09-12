@@ -3,10 +3,16 @@ import coin from "../../../../assets/images/coin.png"; // Replace with your actu
 
 export const CoinHolder = () => {
   const [dragging, setDragging] = useState(false);
+  const [counters, setCounters] = useState([99, 99, 99]); // Initialize counters for each image
 
-  const handleDragStart = (e:any) => {
+  const handleDragStart = (e:any, index: number) => {
     e.dataTransfer.setData('coin', 'dragged');
     setDragging(true);
+
+    // Decrement the counter for the dragged image
+    const newCounters = [...counters];
+    newCounters[index] = Math.max(0, newCounters[index] - 1);
+    setCounters(newCounters);
   };
 
   const handleDragEnd = () => {
@@ -23,13 +29,14 @@ export const CoinHolder = () => {
           <img
             src={coin}
             alt={`coin ${index + 1}`}
-            className="rounded-md"
+            className="rounded-md hover:cursor-pointer"
             style={{ width: '200px', height: '200px' }}
             draggable
-            onDragStart={handleDragStart}
+            onDragStart={(e) => handleDragStart(e, index)}
             onDragEnd={handleDragEnd}
+
           />
-          <span className="ml-2 text-white font-bold">{index + 1}</span>
+          <span className="ml-2 text-white font-bold">{counters[index]}</span>
         </div>
       ))}
     </div>

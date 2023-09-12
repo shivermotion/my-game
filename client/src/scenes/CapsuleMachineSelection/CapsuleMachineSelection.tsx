@@ -3,7 +3,8 @@ import { Carousel } from "../../components/ui/special/Carousel/Carousel";
 import { Background } from "../MainMenu/Background/Background";
 import AnimatedHand from "../../components/ui/special/AnimatedHand/AnimatedHand";
 import capsuleMachineBlue from "../../assets/models/CapsuleMachine.glb"
-import capsuleMachineRed from "../../assets/models/CapsuleMachineRed.glb"
+// import capsuleMachineRed from "../../assets/models/CapsuleMachineRed.glb"
+import mysticForest from "../../assets/models/mysticForest.glb"
 import japanMachine from "../../assets/models/JapaneseCapsuleMachine.glb"
 
 export const CapsuleMachineSelection: React.FC = () => {
@@ -35,7 +36,7 @@ export const CapsuleMachineSelection: React.FC = () => {
   {
     id: 2,
     name: "Mystic Forest",
-    imageFile: capsuleMachineRed,
+    imageFile: mysticForest,
     rarity: "Rare",
     cost: 300,
     description: "Dive deep into an enchanted forest. The Mystic Forest Gacha grants users magical characters from forgotten folklore tales.",
