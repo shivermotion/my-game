@@ -39,16 +39,7 @@ width: 100%;
   border-radius: 0 200px 200px 0; /* Half circle */
   animation: dropBall 1s forwards, shakeBall 0.5s 1s forwards, splitRight 0.5s 1.5s forwards; 
 }
-#Carousel.animation-container {
-  position: relative;
-}
 
-#Carousel .image-container,
-#Carousel .confetti-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
 
 
 

@@ -1,4 +1,4 @@
-import React,{useEffect, useState} from 'react';
+import React,{ useState} from 'react';
 import { ProfileCard } from '../ProfileCard/ProfileCard';
 import avatar from "../../../assets/images/avatar.png";
 
@@ -9,7 +9,7 @@ import avatar from "../../../assets/images/avatar.png";
 export const ProfileContainer = () => {
   const [description, setDescription] = useState('Default description here.');
 
-  const [user, setUser] = useState({
+  const [user] = useState({
     userName: 'testUser',
     rank: 'testRank',
     country: 'testCountry',
