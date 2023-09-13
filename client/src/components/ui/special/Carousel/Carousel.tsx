@@ -24,6 +24,7 @@ interface CarouselProps {
 export const Carousel: React.FC<CarouselProps> = ({ machines }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showAnimation, setShowAnimation] = useState(false);
+  const [showImage, setShowImage] = useState(false);
 
   const handleDrop = (e:any) => {
     e.preventDefault();
@@ -45,19 +46,41 @@ export const Carousel: React.FC<CarouselProps> = ({ machines }) => {
   };
 
   useEffect(() => {
-    let timer:any;
+    let timer1: any;
+    let timer2: any;
+  
+    const handleInput = () => {
+      setShowImage(false);
+      setShowAnimation(false); // Reset the showAnimation state
+      // Remove event listeners to prevent multiple registrations
+      window.removeEventListener('click', handleInput);
+      window.removeEventListener('keydown', handleInput);
+    };
+  
     if (showAnimation) {
-      setTimeout(() => {
+      timer1 = setTimeout(() => {
         LaunchBigConfetti();
       }, 1500);
-      timer = setTimeout(() => {
-        setShowAnimation(false);
-      }, 3000);
+  
+      timer2 = setTimeout(() => {
+        setShowImage(true);
+        // Add event listeners for mouse click and keydown
+        window.addEventListener('click', handleInput);
+        window.addEventListener('keydown', handleInput);
+      }, 1500); // Show image 2 seconds after showAnimation is true
     }
+  
     return () => {
-      clearTimeout(timer);
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+      // Remove event listeners when the component unmounts
+      window.removeEventListener('click', handleInput);
+      window.removeEventListener('keydown', handleInput);
     };
   }, [showAnimation]);
+  
+  
+  
 
   return (
     <div id='Carousel'>
@@ -79,6 +102,19 @@ export const Carousel: React.FC<CarouselProps> = ({ machines }) => {
               <div className="ball right"></div>
             </div>
           )}
+{showImage && (
+  <div className="fixed inset-0 flex items-center justify-center z-50">
+    <div className="bg-black bg-opacity-50 rounded-lg p-4 flex flex-col items-center">
+      <img src="path/to/your/image.jpg" alt="Special " />
+      <p className="mt-4 text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500 animate-pulse">
+        Image Name
+      </p>
+    </div>
+  </div>
+)}
+
+
+
         </div>
       <div className='w-1/4 h-grow border-2 border-gray-500 rounded-3xl m-4 bg-opacity-[.5] bg-gray-200 p-4 flex flex-col justify-between animate-fade-left  '>
       <div>
