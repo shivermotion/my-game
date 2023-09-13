@@ -8,7 +8,10 @@ type ModelViewerProps = {
   className?: string; 
 };
 
-const ModelViewer = ({ src, alt, style, poster, className }: ModelViewerProps) => (
+const ModelViewer = ({ src, alt, style, poster, className }: ModelViewerProps) => {
+  console.log("Props received:", src, alt, style, poster, className);
+  
+return (
   <div className={className}>
   <model-viewer 
     src={src} 
@@ -21,6 +24,7 @@ const ModelViewer = ({ src, alt, style, poster, className }: ModelViewerProps) =
   >
     </model-viewer>
   </div>
-);
+  );
+}
 
 export default ModelViewer;
