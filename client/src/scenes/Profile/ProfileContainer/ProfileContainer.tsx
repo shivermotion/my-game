@@ -42,12 +42,12 @@ export const ProfileContainer = () => {
     <div className="flex flex-col h-screen justify-center items-center shadow-lg p-4 rounded-3xl bg-[#FED7AA] m-8 border-2 border-orange-600">
       <div className="flex w-full max-w-6xl bg-white rounded-lg shadow-lg p-6 border-2 border-orange-600 bg-[#FED7AA]">
         <div className="w-2/3">
-    <ProfileCard 
-    description={description} 
-    rank={user.rank} 
-    userName={user.userName} 
-    country={user.country} 
-    gachaponCollection={user.gachaponCollection.length} />
+          <ProfileCard 
+          description={description} 
+          rank={user.rank} 
+          userName={user.userName} 
+          country={user.country} 
+          gachaponCollection={user.gachaponCollection.length} />
           <div className="mt-4">
             <label htmlFor="description" className="text-sm font-bold">Change Description:</label>
             <select

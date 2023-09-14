@@ -107,9 +107,9 @@ export const Carousel: React.FC<CarouselProps> = ({ machines }) => {
   <div className="fixed inset-0 flex items-center justify-center z-50">
     <div className="bg-black bg-opacity-90 rounded-lg p-4 flex flex-col items-center w-screen h-100% animate-fade">
                 <p className="text-4xl font-bold text-white">YOU GOT</p>
-      <div className="mt-4 text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500 animate-pulse w-full">
+      <div className="mt-4 text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500  w-full">
                 <ModelViewer src={machines[currentIndex].imageFile} alt={'test'}  />
-        Image Name
+        <div className='flex justify-center items-center'>Image Name</div>
       </div>
     </div>
   </div>
