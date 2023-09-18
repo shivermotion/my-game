@@ -2,6 +2,10 @@ import React, { useEffect, useState } from "react";
 import { Carousel } from "../../components/ui/special/Carousel/Carousel";
 import { Background } from "../MainMenu/Background/Background";
 import AnimatedHand from "../../components/ui/special/AnimatedHand/AnimatedHand";
+import capsuleMachineBlue from "../../assets/models/CapsuleMachine.glb"
+// import capsuleMachineRed from "../../assets/models/CapsuleMachineRed.glb"
+import mysticForest from "../../assets/models/mysticForest.glb"
+import japanMachine from "../../assets/models/JapaneseCapsuleMachine.glb"
 
 export const CapsuleMachineSelection: React.FC = () => {
   const [showHand, setShowHand] = useState(true);
@@ -23,7 +27,7 @@ export const CapsuleMachineSelection: React.FC = () => {
   {
     id: 1,
     name: "Galactic Gacha",
-    imageFile: 'machine1.png',
+    imageFile: capsuleMachineBlue,
     rarity: "Ultra Rare",
     cost: 500,
     description: "Venture into the vastness of space and pull characters from galaxies far and wide. It's said that this machine holds characters from forgotten planets.",
@@ -32,7 +36,7 @@ export const CapsuleMachineSelection: React.FC = () => {
   {
     id: 2,
     name: "Mystic Forest",
-    imageFile: "machine2.png",
+    imageFile: mysticForest,
     rarity: "Rare",
     cost: 300,
     description: "Dive deep into an enchanted forest. The Mystic Forest Gacha grants users magical characters from forgotten folklore tales.",
@@ -41,7 +45,7 @@ export const CapsuleMachineSelection: React.FC = () => {
   {
     id: 3,
     name: "Cybernetic City",
-    imageFile: "machine3.png",
+    imageFile: japanMachine,
     rarity: "Common",
     cost: 100,
     description: "Step into a neon-lit cyberpunk future. Extract characters from a world of technology, hackers, and neon lights.",
