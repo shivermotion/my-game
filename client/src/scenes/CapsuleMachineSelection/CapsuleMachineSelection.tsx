@@ -6,6 +6,7 @@ import capsuleMachineBlue from "../../assets/models/CapsuleMachine.glb"
 // import capsuleMachineRed from "../../assets/models/CapsuleMachineRed.glb"
 import mysticForest from "../../assets/models/mysticForest.glb"
 import japanMachine from "../../assets/models/JapaneseCapsuleMachine.glb"
+import SpinningText from "../../components/ui/special/SpinningText/SpinningText";
 
 export const CapsuleMachineSelection: React.FC = () => {
   const [showHand, setShowHand] = useState(true);
@@ -55,18 +56,24 @@ export const CapsuleMachineSelection: React.FC = () => {
 
 
 
-  return (
-    <>
-    <Background/>
+return (
+  <>
+    <Background />
     <div className="relative"> {/* Ensures the hand is positioned relative to this container */}
       <h1 className="justify-center flex shadow-lg p-4 rounded-3xl bg-[#FED7AA] m-8 border-2 border-orange-600 font-bold ">
         <div className="animate-bounce animate-delay-[600ms] px-3  ">SELECT </div> 
         <div className="animate-bounce animate-delay-[300ms] px-3 ">CAPSULE</div>
-         <div className="animate-bounce px-3 ">MACHINE</div>
-         </h1>
-      <Carousel machines={capsuleMachinesMockData} />
+        <div className="animate-bounce px-3 ">MACHINE</div>
+      </h1>
+      <div className="absolute inset-0 flex items-center justify-center"> {/* New wrapper div */}
+          <SpinningText />
+       
+        </div>
+      <div className="carousel-wrapper z-10 relative"> {/* New wrapper */}
+        <Carousel machines={capsuleMachinesMockData} />
+      </div>
       {showHand && <AnimatedHand />}
     </div>
-    </>
-  );
+  </>
+);
 }

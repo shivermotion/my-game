@@ -1,0 +1,60 @@
+.App {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* height: 100vh; */
+}
+
+.circle {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  position: relative;
+  animation: spin 10s infinite linear;
+}
+
+.text span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 36px;
+  animation: colorPulse 10s infinite linear;
+}
+
+@keyframes colorPulse {
+  0% {
+    color: red;
+  }
+  25% {
+    color: yellow;
+  }
+  50% {
+    color: green;
+  }
+  75% {
+    color: blue;
+  }
+  100% {
+    color: red;
+  }
+}
+
+
+.spinning-text-wrapper {
+  z-index: 0; /* Behind the Carousel */
+}
+
+.carousel-wrapper {
+  z-index: 1; /* In front of the SpinningText */
+}
+
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
