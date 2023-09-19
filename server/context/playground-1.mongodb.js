@@ -1,43 +1,33 @@
-/* global use, db */
-// MongoDB Playground
-// Use Ctrl+Space inside a snippet or a string literal to trigger completions.
+// MongoDB Playground Script for GachaWorld
 
-const database = 'gachaworld';
-const collection = 'gachapon';
+// Declare constants for database and collection names.
+// This makes it easier to change the names later if needed.
+const databaseName = 'gachaworld';
+const collectionName = 'gachapon';
 
-// The current database to use.
-use(database);
+// Set the current database to 'gachaworld'.
+// This is equivalent to running `use gachaworld` in the MongoDB shell.
+// All subsequent operations will be performed on this database.
+use(databaseName);
 
-// Create a new collection.
-db.createCollection(collection);
+// Create a new collection named 'gachapon'.
+// This is where you'll store data related to the gachapon toys in your game.
+// If the collection already exists, this operation is a no-op.
+db.createCollection(collectionName);
 
-// The prototype form to create a collection:
-/* db.createCollection( <name>,
-  {
-    capped: <boolean>,
-    autoIndexId: <boolean>,
-    size: <number>,
-    max: <number>,
-    storageEngine: <document>,
-    validator: <document>,
-    validationLevel: <string>,
-    validationAction: <string>,
-    indexOptionDefaults: <document>,
-    viewOn: <string>,
-    pipeline: <pipeline>,
-    collation: <document>,
-    writeConcern: <document>,
-    timeseries: { // Added in MongoDB 5.0
-      timeField: <string>, // required for time series collections
-      metaField: <string>,
-      granularity: <string>,
-      bucketMaxSpanSeconds: <number>, // Added in MongoDB 6.3
-      bucketRoundingSeconds: <number>, // Added in MongoDB 6.3
-    },
-    expireAfterSeconds: <number>,
-    clusteredIndex: <document>, // Added in MongoDB 5.3
-  }
-)*/
+// The above `createCollection` command can also accept additional parameters
+// to customize the behavior of the collection. These are commented out below
+// for reference. For example, you can set validation rules, specify whether
+// the collection is capped, etc.
 
-// More information on the `createCollection` command can be found at:
-// https://www.mongodb.com/docs/manual/reference/method/db.createCollection/
+/* 
+db.createCollection(collectionName, {
+  capped: false,  // Whether the collection is capped (fixed size)
+  size: 5242880,  // Max size in bytes for a capped collection
+  max: 5000,      // Max number of documents for a capped collection
+  validator: { $jsonSchema: { /* schema object */   // Validation rules
+  // ... other options ... 
+
+// For more information on the `createCollection` command and its options,
+// you can refer to the MongoDB documentation:
+// https://docs.mongodb.com/manual/reference/method/db.createCollection/

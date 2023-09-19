@@ -6,7 +6,7 @@ import Modal from 'react-modal';
 export const CollectionsCard = () => {
   const [items, setItems] = useState(Array.from({ length: 36 }));
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [currentItem, setCurrentItem] = useState(null);
+  const [, setCurrentItem] = useState(null);
 
   const fetchData = () => {
     // You can fetch more data here
