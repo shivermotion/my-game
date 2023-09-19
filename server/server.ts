@@ -14,6 +14,7 @@ import jwt from 'jsonwebtoken'; // Import JWT library
 import {User} from './schemas/UserSchema';
 import { Gachapon, GachaponSchema } from './schemas/GachaponSchema';
 import { authMiddleware } from './middleware/authMiddleware';
+import { resHandler } from './server-functions/response';
 
 // Express setup
 const app = express();
@@ -66,8 +67,8 @@ passport.use(new DiscordStrategy({
                 gachaponCollection: []
 
             };
-            await db.collection('users').insertOne(newUser);
-            return done(null, newUser);
+            const user = await db.collection('users').insertOne(newUser);
+            return done(null, newUser, { userId: user.insertedId });
         }
     } catch (err) {
         return done(err as any);
@@ -110,15 +111,19 @@ export const AppRouter = t.router({
 // Define your routes
 app.get('/auth/discord', passport.authenticate('discord'));
 
-app.get('/auth/discord/callback', passport.authenticate('discord', { failureRedirect: '/login' }), function(req, res) {
+app.get('/auth/discord/callback', passport.authenticate('discord', { failureRedirect: '/login', session: false }), function(req, res) {
   // Cast req.user to the User type
   const user = req.user as User;
 
   // Successful authentication, create a JWT with user ID
-  const token = jwt.sign({ userId: user.discordId }, process.env.JWT_SECRET!, { expiresIn: '1d' });
+  const token = jwt.sign({ discordId: user.discordId, userId: req.authInfo }, process.env.JWT_SECRET!, { expiresIn: '1d' });
 
   // Send token to client, you can also set it in a cookie or other client-side storage
-  res.redirect(`http://localhost:8000/intro?token=${token}`);
+  // res.redirect(`http://localhost:8000/intro?token=${token}`);
+  res.cookie('token', token, { httpOnly: true }); // add secure: true if using https
+
+  res.status(200).json(resHandler({code: 200, type: "success"}));
+
 });
 
 // Middleware to authenticate user on subsequent requests
