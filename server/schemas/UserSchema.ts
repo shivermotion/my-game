@@ -6,6 +6,7 @@ export const UserSchema = z.object({
   username: z.string(),
   discriminator: z.string(),
   avatar: z.string(),
+  rank: z.string(),
   guilds: z.null(),
   money: z.number(),
   gachaponCollection: z.array(z.object({
