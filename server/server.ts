@@ -25,6 +25,13 @@ app.use(cors({
   credentials: true,
 }));
 
+
+// Enable CORS
+app.use(cors({
+  origin: 'http://localhost:8000', // Replace with your frontend's URL
+  credentials: true,
+}));
+
 // Load environment variables
 dotenv.config();
 
