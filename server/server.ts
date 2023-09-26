@@ -14,7 +14,23 @@ import jwt from 'jsonwebtoken'; // Import JWT library
 import {User} from './schemas/UserSchema';
 import { Gachapon, GachaponSchema } from './schemas/GachaponSchema';
 import { authMiddleware } from './middleware/authMiddleware';
+import { resHandler } from './server-functions/response';
 
+// Express setup
+const app = express();
+
+// Enable CORS
+app.use(cors({
+  origin: 'http://localhost:8000', // Replace with your frontend's URL
+  credentials: true,
+}));
+
+
+// Enable CORS
+app.use(cors({
+  origin: 'http://localhost:8000', // Replace with your frontend's URL
+  credentials: true,
+}));
 
 // Load environment variables
 dotenv.config();
@@ -44,6 +60,7 @@ passport.use(new DiscordStrategy({
     scope: ['identify', 'email']
   }, async (accessToken, refreshToken, profile, done) => {
     try {
+      console.log("got the profile stuff from discord");
       const user = await db.collection<User>('users').findOne({ discordId: profile.id });
         if (user) {
             return done(null, user);
@@ -55,11 +72,11 @@ passport.use(new DiscordStrategy({
                 avatar: profile.avatar,
                 guilds: profile.guilds,
                 money: 1000,
-                gachaponCollection: []
-
+                gachaponCollection: [],
+                rank: "Noob",
             };
-            await db.collection('users').insertOne(newUser);
-            return done(null, newUser);
+            const user = await db.collection('users').insertOne(newUser);
+            return done(null, newUser, { userId: user.insertedId });
         }
     } catch (err) {
         return done(err as any);
@@ -67,15 +84,19 @@ passport.use(new DiscordStrategy({
 }));
 
 
+// Initialize Passport
+app.use(passport.initialize());
+// app.use(passport.session());
+
+// passport.serializeUser(function(user, done) {
+//     done(null, user);
+// });
 
 
-passport.serializeUser(function(user, done) {
-    done(null, user);
-});
 
-passport.deserializeUser(function(obj, done) {
-    done(null, obj as any);
-});
+// passport.deserializeUser(function(obj, done) {
+//     done(null, obj as any);
+// });
 
 // tRPC router
 export const AppRouter = t.router({
@@ -83,67 +104,61 @@ export const AppRouter = t.router({
 
 });
 
-// Express setup
-const app = express();
+
 
 // Session options
-const sessionOptions: expressSession.SessionOptions = {
-  secret: process.env.SESSION_SECRET!,
-  resave: false,
-  saveUninitialized: false,
+// const sessionOptions: expressSession.SessionOptions = {
+//   secret: process.env.SESSION_SECRET!,
+//   resave: false,
+//   saveUninitialized: false,
   
-};
+// };
 
 // Use express-session middleware
-app.use(expressSession(sessionOptions));
-
-// Enable CORS
-app.use(cors({
-  origin: 'http://localhost:8000', // Replace with your frontend's URL
-  credentials: true,
-}));
-
-// Initialize Passport
-app.use(passport.initialize());
-app.use(passport.session());
-
+// app.use(expressSession(sessionOptions));
 
 
 // Define your routes
 app.get('/auth/discord', passport.authenticate('discord'));
-app.get('/auth/discord/callback', passport.authenticate('discord', { failureRedirect: '/login' }), function(req, res) {
+
+app.get('/auth/discord/callback', passport.authenticate('discord', { failureRedirect: '/login', session: false }), function(req, res) {
+  // Cast req.user to the User type
   const user = req.user as User;
+  console.log("hit the callback")
+  // Successful authentication, create a JWT with user ID
+  const token = jwt.sign({ discordId: user.discordId, userId: req.authInfo }, process.env.JWT_SECRET!, { expiresIn: '1d' });
 
-  console.log("Authenticated User:", user);
+  // Send token to client, you can also set it in a cookie or other client-side storage
+  // 
+  res.cookie('token', token, { httpOnly: true }); // add secure: true if using https
 
-  const token = jwt.sign({ userId: user.discordId }, process.env.JWT_SECRET!, { expiresIn: '1d' });
+  // res.status(200).json(resHandler({code: 200, type: "success"}));
 
-  console.log("Generated JWT:", token);
+  res.redirect(`http://localhost:8000/intro`);
 
-  res.redirect(`http://localhost:8000/intro?token=${token}`);
 });
 
 // Middleware to authenticate user on subsequent requests
-app.use((req, res, next) => {
-  const token = req.headers.authorization?.split(' ')[1];
-  if (token) {
-    try {
-      const decoded = jwt.verify(token, process.env.JWT_SECRET!) as { userId: string }; // Replace with your secret key
-      req.user = { discordId: decoded.userId } as User;
-      next();
-    } catch {
-      res.status(401).send('Unauthorized');
-    }
-  } else {
-    next();
-  }
-});
+// app.use((req, res, next) => {
+//   const token = req.headers.authorization?.split(' ')[1];
+//   if (token) {
+//     try {
+//       const decoded = jwt.verify(token, process.env.JWT_SECRET!) as { userId: string }; // Replace with your secret key
+//       req.user = { discordId: decoded.userId } as User;
+//       next();
+//     } catch {
+//       res.status(401).send('Unauthorized');
+//     }
+//   } else {
+//     next();
+//   }
+// });
 
-app.use(authMiddleware);
+// app.use(authMiddleware);
 
 // tRPC router
 app.use('/api/trpc', trpcExpress.createExpressMiddleware({ router: AppRouter, createContext }));
 
 // Create and start the server
-const server = createServer(app);
-server.listen(3000, () => console.log('Server listening on port 3000!'));
+// const server = createServer(app);
+app.listen(3000, () => console.log('Server listening on port 3000!'));
