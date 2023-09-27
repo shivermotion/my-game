@@ -19,8 +19,8 @@ import { Button } from '../../components/ui/common/Button';
   return (
     <div style={{backgroundImage: `url('${backgroundImage}')`,}} className="bg-cover bg-center min-h-screen flex flex-col">
       <div className="container mx-auto p-8">
-        <div className="flex justify-between items-center">
-          <h1 className="text-4xl font-bold">GACHAWORLD</h1>
+        <div className="flex justify-between items-center bg-black rounded-lg p-4">
+          <h1 className="text-4xl font-bold text-white">GACHAWORLD</h1>
           <a href="/merch-shop" ><Button text='SHOP'/></a>
         </div>
 
