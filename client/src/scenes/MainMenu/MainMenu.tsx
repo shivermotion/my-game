@@ -6,11 +6,12 @@ import { Link } from "react-router-dom";
 import ModelViewer from "../../components/ui/special/ModelViewer/ModelViewer";
 import earth from "../../assets/models/GlobeCapsuleCompressed.glb"
 import "./MainMenu.css";
-
+import { useNavigate } from "react-router-dom";
 
 
 
 export const MainMenu = () => {
+  const navigate = useNavigate();
   return (
     <>
       <Background />
