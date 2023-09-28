@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Routes, Navigate } from "react-router-dom"; // Make sure to import Navigate
+import { Route, Routes } from "react-router-dom"; // Make sure to import Navigate
 import { OptionMenu } from "../scenes/OptionsMenu/OptionMenu";
 import { Collection } from "../scenes/Collection/Collection";
 import { MainMenu } from "../scenes/MainMenu/MainMenu";
@@ -12,6 +12,7 @@ import { PrivateLayout } from "../components/layouts/Private/Private";
 import "../globals/globals.css"
 import 'font-awesome/css/font-awesome.min.css';
 import { LoginPortal } from "../scenes/LoginPortal/LoginPortal";
+import { World } from "../scenes/World/World";
 
 
 
@@ -28,6 +29,7 @@ export const RootNavigation: React.FC = () => {
         <Route path="/profile" element={<Profile />} />
         <Route path="/capsule" element={<CapsuleMachineSelection />} />
         <Route path="/minigames" element={<MiniGameSelection />} />
+        <Route path="/world" element={<World />} />
       </Route>
       <Route path="*" element={<NotFound />} /> {/* 404 page */}
     </Routes>
