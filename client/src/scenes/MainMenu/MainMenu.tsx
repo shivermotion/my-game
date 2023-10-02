@@ -47,9 +47,7 @@ export const MainMenu = () => {
         <Link to="/options"><Button text="OPTIONS"  /></Link>
       </div>
       <div className={`new-component absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 ${showNewComponent ? 'block' : 'hidden'} z-10`}>
-     
-      <h1>World</h1>
-     
+        <World/>
       </div>
       <div className={`wipe-transition ${isWipeActive ? 'active' : ''} z-20`}></div>
     </>
